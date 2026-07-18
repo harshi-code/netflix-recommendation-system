@@ -1,0 +1,64 @@
+# Netflix-Style Movie Recommendation System
+
+A hybrid movie recommendation system combining collaborative filtering and content-based filtering, built using the MovieLens dataset.
+
+## Overview
+
+This project implements two complementary recommendation approaches to suggest movies to users:
+1. **Collaborative Filtering** — recommends movies based on patterns in user rating behavior (users who liked similar movies)
+2. **Content-Based Filtering** — recommends movies based on genre similarity
+
+## Dataset
+
+- **Source:** [MovieLens Latest Small Dataset](https://files.grouplens.org/datasets/movielens/ml-latest-small.zip)
+- **Movies:** 9,742
+- **Ratings:** 100,836
+- **Users:** 610
+
+## Methodology
+
+### Content-Based Filtering
+- Movie genres converted into TF-IDF vectors
+- Cosine similarity computed between movies based on genre overlap
+- Recommends movies with similar genre profiles
+
+### Collaborative Filtering
+- Built a user-item ratings matrix
+- Computed item-item cosine similarity based on user rating patterns
+- Recommends movies frequently rated highly by users with similar taste
+
+### Evaluation
+- Train/test split (80/20) on ratings data
+- Predicted ratings using weighted similarity scores
+- Evaluated using Mean Squared Error (MSE)
+
+## Results
+
+| Metric | Score |
+|--------|-------|
+| MSE (Collaborative Filtering) | 0.89 |
+
+## Example Output
+
+**For "Forrest Gump (1994)":**
+
+- *Collaborative filtering recommendations:* Braveheart, Pulp Fiction, Shawshank Redemption, Jurassic Park, Silence of the Lambs
+- *Content-based recommendations:* Life Is Beautiful, Train of Life, and other drama/emotional films
+
+This highlights the difference between the two approaches — collaborative filtering captures actual viewing behavior patterns, while content-based filtering focuses purely on genre similarity.
+
+## Tech Stack
+
+`Python` `Pandas` `NumPy` `scikit-learn`
+
+## Key Learnings
+
+- Item-based collaborative filtering can suffer from the "cold start" problem for new users/movies with few ratings
+- Content-based filtering works well for genre-similar recommendations but doesn't capture nuanced user preferences
+- A true hybrid system (combining both scores with weighted averaging) could improve recommendation diversity and accuracy
+
+## How to Run
+
+1. Clone this repository
+2. Open `netflix_recommendation.ipynb` in Google Colab or Jupyter Notebook
+3. Run all cells sequentially — dataset downloads automatically via `wget`
